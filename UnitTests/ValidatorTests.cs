@@ -15,8 +15,8 @@ public class ValidatorTests
 
     var validator = new Validator();
 
-    Assert.False(validator.IsModelValid(invalidCatfact));
-    Assert.False(validator.IsModelValid(invalidCatfact2));
+    Assert.False(validator.IsCatfactModelValid(invalidCatfact));
+    Assert.False(validator.IsCatfactModelValid(invalidCatfact2));
   }
 
   [Fact]
@@ -29,6 +29,6 @@ public class ValidatorTests
     };
     var validator = new Validator();
 
-    Assert.True(validator.IsModelValid(catfact));
+    Assert.True(validator.IsCatfactModelValid(catfact));
   }
 }

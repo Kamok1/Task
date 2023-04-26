@@ -38,7 +38,7 @@ public class MainService : IMainService
 
     var model = await _catfactService.GetCatfactAsync();
     _logger.LogInformation("Fetching finished");
-    if (_validator.IsModelValid(model) == false)
+    if (_validator.IsCatfactModelValid(model) == false)
       throw new InvalidDataException();
 
     _logger.LogInformation("Appending...");

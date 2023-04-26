@@ -9,5 +9,5 @@ public interface IValidator
   /// </summary>
   /// <param name="model">Model to validate</param>
   /// <returns>True if model is valid, otherwise false</returns>
-  bool IsModelValid(Catfact? model);
+  bool IsCatfactModelValid(Catfact? model);
 }

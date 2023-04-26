@@ -1,5 +1,5 @@
-﻿namespace Task.Models.Settings;
+﻿namespace Models.Settings;
 public record ApiSettings
 {
-  public string Url { get; init; } = "";
+  public string BaseUrl { get; init; } = "";
 }

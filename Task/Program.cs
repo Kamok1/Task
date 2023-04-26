@@ -4,22 +4,30 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Task.Abstractions;
-using Task.Models.Settings;
 using Microsoft.Extensions.Http;
+using Models.Response;
+using Models.Settings;
 
 var config = new ConfigurationBuilder()
   .AddJsonFile("appsettings.json")
   .Build();
+var apiSettings = config.GetSection("ApiSettings").Get<ApiSettings>()!;
 
 var host = Host.CreateDefaultBuilder(args)
   .ConfigureServices(services =>
   {
     services.AddSingleton(config.GetSection("AppSettings").Get<AppSettings>()!);
-    services.AddSingleton(config.GetSection("ApiSettings").Get<ApiSettings>()!);
-    services.AddScoped<IDataService, ApiService>();
+    services.AddScoped<ICatfactService, ApiService>();
     services.AddScoped<IStorageService, StorageService>();
-    services.AddHttpClient();
+    services.AddHttpClient<ICatfactService, ApiService>();
+    services.AddSingleton(apiSettings);
   })
   .Build();
-var test = host.Services.GetRequiredService<IDataService>();
-test.Test();
+
+var test = host.Services.GetRequiredService<ICatfactService>();
+var a = await test.GetCatfactAsync();
+
+
+//todo logger
+//todo exception handling
+//todo comments

@@ -1,19 +1,26 @@
-﻿using System.Net;
+﻿using System.Net.Http.Json;
+using Models.Response;
+using Models.Settings;
 using Task.Abstractions;
-using Task.Models.Settings;
 
 namespace Implementations;
-public class ApiService : IDataService
+public class ApiService : ICatfactService
 {
-  private readonly ApiSettings _apiSettings;
   private readonly HttpClient _httpClient;
-  public ApiService(ApiSettings apiSettings, IHttpClientFactory )
+  public ApiService(ApiSettings apiSettings, HttpClient httpClient)
   {
-    _apiSettings = apiSettings;
+    _httpClient = httpClient;
+    _httpClient.BaseAddress = new Uri(apiSettings.BaseUrl);
+  }
+  public async Task<CatfactResponse> GetCatfactAsync() 
+  {
+    return (await GetObject<CatfactResponse>("/fact"))!;
   }
 
-  public void Test()
+  private async Task<T?> GetObject<T>(string path)
   {
-    Console.WriteLine(_apiSettings.Source);
+    var res = await _httpClient.GetAsync(path);
+    res.EnsureSuccessStatusCode();
+    return await res.Content.ReadFromJsonAsync<T>();
   }
 }

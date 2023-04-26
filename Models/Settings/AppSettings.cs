@@ -1,4 +1,4 @@
-﻿namespace Task.Models.Settings;
+﻿namespace Models.Settings;
 public record AppSettings
 {
   public string FilePath { get; init; } = "";

@@ -22,22 +22,12 @@ public class FileService : IStorageService
   public async Task AppendToStorageAsync<T>(T obj)
   {
     CreateFileIfDoesntExists();
-    await File.AppendAllTextAsync(_appSettings.FilePath, ConvertObjectToJson(obj) + Environment.NewLine, 
+    await File.AppendAllTextAsync(_appSettings.FilePath, JsonSerializer.Serialize(obj, _jsonSerializerOptions) + Environment.NewLine, 
       encoding:Encoding.UTF8);
   }
 
   /// <summary>
-  /// Converts object into a JSON string.
-  /// </summary>
-  /// <typeparam name="T"></typeparam>
-  /// <param name="obj"></param>
-  /// <returns>A JSON representation of the value.</returns>
-  private string ConvertObjectToJson<T>(T obj)
-  {
-    return JsonSerializer.Serialize(obj, _jsonSerializerOptions);
-  }
-  /// <summary>
-  /// Checks if file exists, create if it doesn't.
+  /// Checks if the file exists, creates it if it doesn't.
   /// </summary>
   private void CreateFileIfDoesntExists()
   {

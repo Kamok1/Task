@@ -25,7 +25,6 @@ public class MainServiceTests
   public async Task DoWorkAsync_Should_Append_Catfact_To_Storage()
   {
     var mainService = new MainService(_catfactService, _storageService, _logger, _validator);
-
     var model = new Catfact { Fact = "Test", Length = 6 };
     var mockStorageService = Mock.Get(_storageService);
     var mockCatfactService = Mock.Get(_catfactService);
@@ -45,7 +44,6 @@ public class MainServiceTests
   public async Task DoWorkAsync_Should_Not_Append_Catfact_To_Storage()
   {
     var mainService = new MainService(_catfactService, _storageService, _logger, _validator);
-
     var model = new Catfact { Fact = "Test", Length = 0 };
     var mockStorageService = Mock.Get(_storageService);
     var mockCatfactService = Mock.Get(_catfactService);
@@ -55,6 +53,7 @@ public class MainServiceTests
     mockStorageService.Setup(s => s.AppendToStorageAsync(model)).Returns(Task.CompletedTask);
     mockValidator.Setup(v => v.IsCatfactModelValid(model)).Returns(false);
 
-    await Assert.ThrowsAsync<InvalidDataException>(async() => await mainService.StartAsync()) ;
+    await Assert.ThrowsAsync<InvalidDataException>(async() => await mainService.StartAsync());
+    mockStorageService.Verify(s=>s.AppendToStorageAsync(model), Times.Never);
   }
 }

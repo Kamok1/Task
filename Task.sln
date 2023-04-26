@@ -19,9 +19,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Models", "Models", "{FE72C7
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{7C4BEAB9-1C61-4020-B717-0C3D134128E0}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{05A06EE1-D17E-41E7-95B6-2DE35FAD2D11}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{05A06EE1-D17E-41E7-95B6-2DE35FAD2D11}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "UnitTests\UnitTests.csproj", "{74902420-5104-40C2-9E1C-380A1076C478}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "UnitTests\Tests.csproj", "{74902420-5104-40C2-9E1C-380A1076C478}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

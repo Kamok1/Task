@@ -1,7 +1,7 @@
-﻿using System.Net.Http.Json;
-using Abstractions;
+﻿using Abstractions;
 using Models;
 using Models.Settings;
+using System.Net.Http.Json;
 
 namespace Implementations;
 public class ApiService : ICatfactService
@@ -12,7 +12,7 @@ public class ApiService : ICatfactService
     _httpClient = httpClient;
     _httpClient.BaseAddress = new Uri(apiSettings.BaseUrl);
   }
-  public async Task<Catfact?> GetCatfactAsync() 
+  public async Task<Catfact?> GetCatfactAsync()
   {
     var res = await _httpClient.GetAsync("fact");
     res.EnsureSuccessStatusCode();

@@ -1,10 +1,10 @@
-﻿using Implementations;
+﻿using Abstractions;
+using Implementations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Models.Settings;
-using Abstractions;
 using Microsoft.Extensions.Logging;
+using Models.Settings;
 
 var config = new ConfigurationBuilder()
   .AddJsonFile("appsettings.json")

@@ -1,6 +1,4 @@
-﻿using Models;
-
-namespace Abstractions;
+﻿namespace Abstractions;
 
 public interface IMainService
 {

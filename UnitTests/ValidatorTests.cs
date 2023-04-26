@@ -1,9 +1,7 @@
-﻿using Abstractions;
-using Implementations;
-using Microsoft.Extensions.Logging;
+﻿using Implementations;
 using Models;
-using Moq;
-namespace UnitTests;
+
+namespace Tests;
 
 public class ValidatorTests
 {

@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging;
 using Models;
 using Moq;
 
-namespace UnitTests;
+namespace Tests;
 
 public class MainServiceTests
 {
@@ -35,7 +35,7 @@ public class MainServiceTests
     mockValidator.Setup(v => v.IsCatfactModelValid(model)).Returns(true);
 
     await mainService.StartAsync();
-    
+
     mockCatfactService.Verify(c => c.GetCatfactAsync(), Times.Once);
     mockStorageService.Verify(s => s.AppendToStorageAsync(model), Times.Once);
     mockValidator.Verify(v => v.IsCatfactModelValid(model), Times.Once);
@@ -53,7 +53,7 @@ public class MainServiceTests
     mockStorageService.Setup(s => s.AppendToStorageAsync(model)).Returns(Task.CompletedTask);
     mockValidator.Setup(v => v.IsCatfactModelValid(model)).Returns(false);
 
-    await Assert.ThrowsAsync<InvalidDataException>(async() => await mainService.StartAsync());
-    mockStorageService.Verify(s=>s.AppendToStorageAsync(model), Times.Never);
+    await Assert.ThrowsAsync<InvalidDataException>(async () => await mainService.StartAsync());
+    mockStorageService.Verify(s => s.AppendToStorageAsync(model), Times.Never);
   }
 }

@@ -1,8 +1,8 @@
-﻿using System.Text;
+﻿using Abstractions;
+using Models.Settings;
+using System.Text;
 using System.Text.Encodings.Web;
 using System.Text.Json;
-using Abstractions;
-using Models.Settings;
 
 namespace Implementations;
 public class FileService : IStorageService
@@ -22,8 +22,8 @@ public class FileService : IStorageService
   public async Task AppendToStorageAsync<T>(T obj)
   {
     CreateFileIfDoesntExists();
-    await File.AppendAllTextAsync(_appSettings.FilePath, JsonSerializer.Serialize(obj, _jsonSerializerOptions) + Environment.NewLine, 
-      encoding:Encoding.UTF8);
+    await File.AppendAllTextAsync(_appSettings.FilePath, JsonSerializer.Serialize(obj, _jsonSerializerOptions) + Environment.NewLine,
+      encoding: Encoding.UTF8);
   }
 
   /// <summary>

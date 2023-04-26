@@ -1,6 +1,5 @@
 ﻿using Abstractions;
 using Microsoft.Extensions.Logging;
-using Models;
 
 namespace Implementations;
 public class MainService : IMainService

@@ -8,7 +8,7 @@ namespace UnitTests;
 public class ValidatorTests
 {
   [Fact]
-  public void Validate_CatfactResponse()
+  public void Validate_CatfactResponse_Should_Be_Invalid()
   {
     var invalidCatfact = new Catfact { Fact = "", Length = 2 };
     var invalidCatfact2 = new Catfact { Fact = "dsa", Length = 0 };

@@ -14,6 +14,7 @@ var host = Host.CreateDefaultBuilder(args)
   {
     services.AddSingleton(config.GetSection("StorageSettings").Get<StorageSettings>()!);
     services.AddSingleton(config.GetSection("ApiSettings").Get<ApiSettings>()!);
+    services.AddSingleton<IValidator, Validator>();
     services.AddScoped<ICatfactService, ApiService>();
     services.AddScoped<IStorageService, FileService>();
     services.AddScoped<IMainService, MainService>();
@@ -25,7 +26,6 @@ var mainService = host.Services.GetRequiredService<IMainService>();
 try
 {
   await mainService.StartAsync();
-
 }
 catch (Exception e)
 {

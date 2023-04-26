@@ -1,4 +1,4 @@
-﻿using Models.Response;
+﻿using Models;
 
 namespace Abstractions;
 public interface ICatfactService
@@ -7,5 +7,5 @@ public interface ICatfactService
   /// Deserializes the random object from data source into a instance of type CatfactResponse. 
   /// </summary>
   /// <returns>Instance of CatfactResponse</returns>
-  Task<CatfactResponse?> GetCatfactAsync();
+  Task<Catfact?> GetCatfactAsync();
 }

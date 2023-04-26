@@ -1,43 +1,33 @@
 ﻿using Abstractions;
 using Microsoft.Extensions.Logging;
-using Models.Response;
+using Models;
 
 namespace Implementations;
 public class MainService : IMainService
 {
   private readonly ICatfactService _catfactService;
   private readonly IStorageService _storageService;
+  private readonly IValidator _validator;
   private readonly ILogger _logger;
-  public MainService(ICatfactService catfactService, IStorageService storageService, ILogger<MainService> logger)
+  public MainService(ICatfactService catfactService, IStorageService storageService, ILogger<MainService> logger, IValidator validator)
   {
     _catfactService = catfactService;
     _storageService = storageService;
     _logger = logger;
+    _validator = validator;
   }
   public async Task StartAsync()
   {
     _logger.LogInformation("Start");
-    try
-    {
-      await DoWork();
-    }
-    catch (Exception e)
-    {
-      Console.WriteLine($"Error occurred: {Environment.NewLine} {e.Message}");
-      throw;
-    }
+    await DoWork();
     Stop();
   }
 
   public void ErrorHandler(Exception exception)
   {
-    throw new NotImplementedException();
+    _logger.LogError($"Error occurred: {Environment.NewLine} {exception.Message}");
   }
 
-  public bool IsModelValid(CatfactResponse? model)
-  {
-    return (model == default || model.Length <= 0 || string.IsNullOrEmpty(model.Fact)) == false;
-  }
 
   /// <summary>
   /// Start main functionality of the application.
@@ -45,18 +35,17 @@ public class MainService : IMainService
   /// <returns>Task</returns>
   private async Task DoWork()
   {
-    Console.WriteLine("Fetching...");
+    _logger.LogInformation("Fetching...");
 
     var model = await _catfactService.GetCatfactAsync();
-    model.Fact = "";
-   
+    _logger.LogInformation("Fetching finished");
+    if (_validator.IsModelValid(model) == false)
+      throw new InvalidDataException();
 
-    Console.WriteLine("Fetching finished");
-    Console.WriteLine("Appending...");
-
+    _logger.LogInformation("Appending...");
     await _storageService.AppendToStorageAsync(model);
 
-    Console.WriteLine("Appending finished");
+    _logger.LogInformation("Appending finished");
   }
   /// <summary>
   /// Performs operations at the end of the application

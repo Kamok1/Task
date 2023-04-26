@@ -1,4 +1,4 @@
-﻿using Models.Response;
+﻿using Models;
 
 namespace Abstractions;
 
@@ -10,7 +10,5 @@ public interface IMainService
   /// </summary>
   /// <returns>Task</returns>
   Task StartAsync();
-
-  bool IsModelValid(CatfactResponse? model);
   void ErrorHandler(Exception exception);
 }

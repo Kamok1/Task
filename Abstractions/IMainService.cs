@@ -10,5 +10,9 @@ public interface IMainService
   /// </summary>
   /// <returns>Task</returns>
   Task StartAsync();
+  /// <summary>
+  /// Manages exceptions
+  /// </summary>
+  /// <param name="exception">The exception object containing the error information</param>
   void ErrorHandler(Exception exception);
 }

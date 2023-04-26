@@ -1,5 +1,5 @@
 ﻿namespace Models.Settings;
-public record AppSettings
+public record StorageSettings
 {
   public string FilePath { get; init; } = "";
 }

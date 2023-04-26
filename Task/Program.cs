@@ -1,33 +1,33 @@
-﻿using System.Diagnostics.Metrics;
-using Implementations;
+﻿using Implementations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Task.Abstractions;
-using Microsoft.Extensions.Http;
-using Models.Response;
 using Models.Settings;
+using Abstractions;
 
 var config = new ConfigurationBuilder()
   .AddJsonFile("appsettings.json")
   .Build();
-var apiSettings = config.GetSection("ApiSettings").Get<ApiSettings>()!;
 
 var host = Host.CreateDefaultBuilder(args)
   .ConfigureServices(services =>
   {
-    services.AddSingleton(config.GetSection("AppSettings").Get<AppSettings>()!);
+    services.AddSingleton(config.GetSection("StorageSettings").Get<StorageSettings>()!);
+    services.AddSingleton(config.GetSection("ApiSettings").Get<ApiSettings>()!);
     services.AddScoped<ICatfactService, ApiService>();
-    services.AddScoped<IStorageService, StorageService>();
+    services.AddScoped<IStorageService, FileService>();
+    services.AddScoped<IMainService, MainService>();
     services.AddHttpClient<ICatfactService, ApiService>();
-    services.AddSingleton(apiSettings);
   })
   .Build();
+var mainService = host.Services.GetRequiredService<IMainService>();
 
-var test = host.Services.GetRequiredService<ICatfactService>();
-var a = await test.GetCatfactAsync();
+try
+{
+  await mainService.StartAsync();
 
-
-//todo logger
-//todo exception handling
-//todo comments
+}
+catch (Exception e)
+{
+  mainService.ErrorHandler(e);
+}

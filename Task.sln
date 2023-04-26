@@ -3,27 +3,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task", "Task\Task.csproj", "{997782BD-7E66-48C6-83B6-82BF833F04F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Root", "Task\Root.csproj", "{997782BD-7E66-48C6-83B6-82BF833F04F2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Abstractions", "Abstractions", "{C3C718F2-6693-47C7-9401-0A8CBDCBCED3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Abstractions", "Abstractions\Abstractions.csproj", "{508B3396-5396-43B7-A805-D08F4C58A210}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Abstractions", "Abstractions\Abstractions.csproj", "{508B3396-5396-43B7-A805-D08F4C58A210}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Implementations", "Implementations", "{CC471DAC-0AA2-4106-A308-342261F38A9B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Implementations", "Implementations\Implementations.csproj", "{3D6A42A7-A010-46BC-BCAE-63F1926FCA8C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Implementations", "Implementations\Implementations.csproj", "{3D6A42A7-A010-46BC-BCAE-63F1926FCA8C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Root", "Root", "{5C1D5FB7-1919-4291-993C-215E2DF1BEA2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Models", "Models", "{FE72C7D8-D179-42D1-A9DC-39695553A5E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{7C4BEAB9-1C61-4020-B717-0C3D134128E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Models", "Models\Models.csproj", "{7C4BEAB9-1C61-4020-B717-0C3D134128E0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{05A06EE1-D17E-41E7-95B6-2DE35FAD2D11}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Extensions", "Extensions", "{A69C053E-C3C7-441B-ABF6-2653806EABB7}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{74902420-5104-40C2-9E1C-380A1076C478}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "UnitTests\UnitTests.csproj", "{74902420-5104-40C2-9E1C-380A1076C478}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

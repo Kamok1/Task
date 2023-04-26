@@ -7,11 +7,11 @@ using System.Text.Json;
 namespace Implementations;
 public class FileService : IStorageService
 {
-  private readonly StorageSettings _appSettings;
+  private readonly FileSettings _fileSettings;
   private readonly JsonSerializerOptions _jsonSerializerOptions;
-  public FileService(StorageSettings appSettings)
+  public FileService(FileSettings fileSettings)
   {
-    _appSettings = appSettings;
+    _fileSettings = fileSettings;
     _jsonSerializerOptions = new JsonSerializerOptions()
     {
       WriteIndented = true,
@@ -21,7 +21,7 @@ public class FileService : IStorageService
 
   public async Task AppendToStorageAsync<T>(T obj)
   {
-    await File.AppendAllTextAsync(_appSettings.FilePath, JsonSerializer.Serialize(obj, _jsonSerializerOptions) + Environment.NewLine,
+    await File.AppendAllTextAsync(_fileSettings.FilePath, JsonSerializer.Serialize(obj, _jsonSerializerOptions) + Environment.NewLine,
       encoding: Encoding.UTF8);
   }
 }

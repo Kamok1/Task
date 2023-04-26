@@ -18,7 +18,7 @@ var host = Host.CreateDefaultBuilder(args)
   })
   .ConfigureServices(services =>
   {
-    services.AddSingleton(config.GetSection("StorageSettings").Get<StorageSettings>()!);
+    services.AddSingleton(config.GetSection("FileSettings").Get<FileSettings>()!);
     services.AddSingleton(config.GetSection("ApiSettings").Get<ApiSettings>()!);
     services.AddSingleton<IValidator, Validator>();
     services.AddScoped<ICatfactService, ApiService>();

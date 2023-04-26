@@ -18,13 +18,13 @@ public class MainService : IMainService
   }
   public async Task StartAsync()
   {
-    _logger.LogInformation("Start");
+    Console.WriteLine("Start");
     await DoWorkAsync();
     Stop();
   }
   public void ErrorHandler(Exception exception)
   {
-    _logger.LogError($"Error occurred: {Environment.NewLine} {exception.Message}");
+    _logger.LogError("Error occurred: {message}", exception.Message);
   }
 
 
@@ -34,23 +34,25 @@ public class MainService : IMainService
   /// <returns>Task</returns>
   private async Task DoWorkAsync()
   {
-    _logger.LogInformation("Fetching...");
+    Console.WriteLine("Fetching a new fact about cats...");
 
     var model = await _catfactService.GetCatfactAsync();
-    _logger.LogInformation("Fetching finished");
+    Console.WriteLine("Fetching finished");
+    Console.WriteLine("Validating...");
     if (_validator.IsCatfactModelValid(model) == false)
       throw new InvalidDataException();
 
-    _logger.LogInformation("Appending...");
+    Console.WriteLine("Model is valid");
+    Console.WriteLine("Appending...");
     await _storageService.AppendToStorageAsync(model);
 
-    _logger.LogInformation("Appending finished");
+    Console.WriteLine("Appending finished");
   }
   /// <summary>
   /// Performs operations at the end of the application
   /// </summary>
   private void Stop()
   {
-    _logger.LogInformation("End");
+    Console.WriteLine("End");
   }
 }

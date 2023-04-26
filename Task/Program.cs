@@ -4,12 +4,18 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Models.Settings;
 using Abstractions;
+using Microsoft.Extensions.Logging;
 
 var config = new ConfigurationBuilder()
   .AddJsonFile("appsettings.json")
   .Build();
 
+
 var host = Host.CreateDefaultBuilder(args)
+  .ConfigureLogging((_, logger) =>
+  {
+    logger.SetMinimumLevel(LogLevel.Error);
+  })
   .ConfigureServices(services =>
   {
     services.AddSingleton(config.GetSection("StorageSettings").Get<StorageSettings>()!);
@@ -21,6 +27,7 @@ var host = Host.CreateDefaultBuilder(args)
     services.AddHttpClient<ICatfactService, ApiService>();
   })
   .Build();
+
 var mainService = host.Services.GetRequiredService<IMainService>();
 
 try

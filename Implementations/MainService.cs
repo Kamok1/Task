@@ -19,10 +19,9 @@ public class MainService : IMainService
   public async Task StartAsync()
   {
     _logger.LogInformation("Start");
-    await DoWork();
+    await DoWorkAsync();
     Stop();
   }
-
   public void ErrorHandler(Exception exception)
   {
     _logger.LogError($"Error occurred: {Environment.NewLine} {exception.Message}");
@@ -33,7 +32,7 @@ public class MainService : IMainService
   /// Start main functionality of the application.
   /// </summary>
   /// <returns>Task</returns>
-  private async Task DoWork()
+  private async Task DoWorkAsync()
   {
     _logger.LogInformation("Fetching...");
 
@@ -52,6 +51,6 @@ public class MainService : IMainService
   /// </summary>
   private void Stop()
   {
-    Console.WriteLine("End");
+    _logger.LogInformation("End");
   }
 }
